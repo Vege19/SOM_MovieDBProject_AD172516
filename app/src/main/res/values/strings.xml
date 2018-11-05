@@ -5,4 +5,5 @@
     <string name="title_notifications">Muy Pronto</string>
     <string name="title_search">Buscar</string>
     <string name="movie_title">Title</string>
+    <string name="app_title">MovieLibrary</string>
 </resources>

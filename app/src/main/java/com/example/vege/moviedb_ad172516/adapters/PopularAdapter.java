@@ -1,14 +1,17 @@
 package com.example.vege.moviedb_ad172516.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.vege.moviedb_ad172516.MovieDetailsActivity;
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.models.Movie;
 import com.squareup.picasso.Picasso;
@@ -35,16 +38,28 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Movie movie = popularMoviesList.get(i);
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+        final Movie movie = popularMoviesList.get(i);
 
         viewHolder.mTitle.setText(movie.getMovieTitle());
 
         //picasso para obtener las imagenes
         Picasso.with(context)
-                .load(movie.getMoviePoster())
+                .load(movie.getMovieBackdrop())
                 .placeholder(R.drawable.ic_broken_image_white_24dp)
                 .into(viewHolder.mPoster);
+
+        //intent con parcelable
+        viewHolder.mItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MovieDetailsActivity.class);
+                intent.putExtra("details", movie);
+                context.startActivity(intent);
+            }
+        });
+
+
 
     }
 
@@ -57,12 +72,14 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
 
         private TextView mTitle;
         private ImageView mPoster;
+        RelativeLayout mItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mTitle = itemView.findViewById(R.id.tvTitle);
             mPoster = itemView.findViewById(R.id.ivPoster);
+            mItem = itemView.findViewById(R.id.rlItem);
 
         }
 

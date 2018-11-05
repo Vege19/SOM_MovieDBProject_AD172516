@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.adapters.PopularAdapter;
@@ -32,7 +33,6 @@ public class PopularFragment extends Fragment {
 
         mRecyclerView = getActivity().findViewById(R.id.rvPopularMovies);
 
-
     }
 
     @Nullable
@@ -47,8 +47,6 @@ public class PopularFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
     }
 
     @Override
@@ -61,8 +59,6 @@ public class PopularFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
         getPopularMovies();
-
-
     }
 
     //peticion de los datos
@@ -87,6 +83,7 @@ public class PopularFragment extends Fragment {
             //si la peticion falla
             @Override
             public void failure(RetrofitError error) {
+                Toast.makeText(getContext(), "fail", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
         });

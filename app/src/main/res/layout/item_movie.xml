@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/rlItem"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp">
@@ -18,10 +19,11 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
+            android:elevation="4dp"
             android:text="@string/movie_title"
-            android:textStyle="bold"
             android:textColor="@color/primaryText"
-            android:elevation="4dp"/>
+            android:textStyle="bold"
+            android:textSize="18sp"/>
 
         <View
             android:layout_width="match_parent"
