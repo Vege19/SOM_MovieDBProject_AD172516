@@ -18,12 +18,27 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.squareup.picasso.Transformation;
 
+import ru.egslava.blurredview.BlurredImageView;
+
 public class MovieDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+
+        //toolbar config
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.detailTooolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MovieDetailsActivity.this.finish();
+            }
+        });
 
         //recuperamos los datos
         Intent intent = getIntent();
@@ -38,29 +53,19 @@ public class MovieDetailsActivity extends AppCompatActivity {
         //llamamos resources y seteamos los datos recuperados
         final ImageView posterBackground = findViewById(R.id.ivDetailsBackground);
 
-        Picasso.with(this)
+        Picasso.get()
                 .load(backdrop)
                 .placeholder(R.drawable.ic_broken_image_white_24dp)
+                .error(R.drawable.ic_signal_wifi_off_white_24dp)
                 .into(posterBackground);
 
-        TextView detailsTitle = findViewById(R.id.tvDetailsMovieTitle);
-        detailsTitle.setText(title);
-
         TextView detailsOverview =findViewById(R.id.tvOverview);
-        detailsOverview.setText(overview);
+        detailsOverview.setText(overview + overview + overview);
 
         TextView detailsRelease = findViewById(R.id.tvReleaseDate);
         detailsRelease.setText("Release date: " + releaseDate);
 
-        //Back to main activity
-        ImageView buttonBack = findViewById(R.id.btnBack);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MovieDetailsActivity.this.finish();
-            }
-        });
-
+        getSupportActionBar().setTitle(title);
 
     }
 

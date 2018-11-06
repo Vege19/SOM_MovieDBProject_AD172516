@@ -1,6 +1,5 @@
 package com.example.vege.moviedb_ad172516.models;
 
-import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -66,7 +65,7 @@ public class Movie implements Parcelable {
     }
 
     public String getMoviePoster() {
-        return "http://image.tmdb.org/t/p/w500" + moviePoster;
+        return "http://image.tmdb.org/t/p/original" + moviePoster;
     }
 
     public void setMoviePoster(String moviePoster) {
@@ -102,15 +101,5 @@ public class Movie implements Parcelable {
         dest.writeString(movieBackdrop);
         dest.writeString(movieRelease);
     }
-
-    //api class
-    public class MovieResult {
-        private List<Movie> results;
-
-        public List<Movie> getResults() {
-            return results;
-        }
-    }
-
 
 }

@@ -21,11 +21,11 @@ import java.util.List;
 
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
 
-    private List<Movie> popularMoviesList;
+    private List<Movie> popularMovieList;
     private Context context;
 
-    public PopularAdapter(Context context) {
-        this.popularMoviesList = new ArrayList<>();
+    public PopularAdapter(List<Movie> movies, Context context) {
+        this.popularMovieList = movies;
         this.context = context;
     }
 
@@ -39,14 +39,14 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
-        final Movie movie = popularMoviesList.get(i);
+        final Movie movie = popularMovieList.get(i);
 
         viewHolder.mTitle.setText(movie.getMovieTitle());
 
         //picasso para obtener las imagenes
-        Picasso.with(context)
+        Picasso.get()
                 .load(movie.getMovieBackdrop())
-                .placeholder(R.drawable.ic_broken_image_white_24dp)
+                .error(R.drawable.ic_signal_wifi_off_white_24dp)
                 .into(viewHolder.mPoster);
 
         //intent con parcelable
@@ -65,7 +65,8 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return (popularMoviesList == null) ? 0 : popularMoviesList.size();
+        return popularMovieList.size();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -85,10 +86,4 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
 
     }
 
-    public void setMovieList(List<Movie> movieList) {
-        this.popularMoviesList.clear();
-        this.popularMoviesList.addAll(movieList);
-        notifyDataSetChanged();
-
-    }
 }
