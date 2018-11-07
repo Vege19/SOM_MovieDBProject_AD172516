@@ -1,23 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/popularTabLayout"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/popularAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:layout_height="wrap_content">
+        
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/popularToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
 
-        app:tabIndicatorColor="@color/colorAccent"
-        app:tabTextColor="@android:color/darker_gray"
-        app:tabSelectedTextColor="@color/colorAccent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_local_movies_white_24dp"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/audiowide"
+                android:gravity="center_vertical"
+                android:text="MOVERS"
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/popularViewPager"
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</LinearLayout>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/popularTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabTextColor="@android:color/darker_gray"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/popularViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

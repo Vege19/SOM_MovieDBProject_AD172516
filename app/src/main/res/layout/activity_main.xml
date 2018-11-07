@@ -7,35 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".MainActivity">
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/mainAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:gravity="center"
-        android:elevation="4dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_local_movies_white_24dp"
-            android:drawablePadding="8dp"
-            android:fontFamily="@font/anton"
-            android:gravity="center"
-            android:text="@string/app_title"
-            android:textColor="@color/primaryText" />
-
-    </android.support.design.widget.AppBarLayout>
+    tools:context=".activities.MainActivity">
 
     <FrameLayout
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/navigationView"
-        android:layout_below="@id/mainAppBar">
-    </FrameLayout>
+        android:layout_above="@id/navigationView"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationView"

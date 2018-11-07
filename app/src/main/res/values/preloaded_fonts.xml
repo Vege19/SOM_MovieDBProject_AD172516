@@ -2,5 +2,8 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/anton</item>
+        <item>@font/audiowide</item>
+        <item>@font/baloo</item>
+        <item>@font/vampiro_one</item>
     </array>
 </resources>

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.vege.moviedb_ad172516.MovieDetailsActivity;
+import com.example.vege.moviedb_ad172516.activities.MovieDetailsActivity;
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.models.tvShow.TVShow;
 import com.squareup.picasso.Picasso;

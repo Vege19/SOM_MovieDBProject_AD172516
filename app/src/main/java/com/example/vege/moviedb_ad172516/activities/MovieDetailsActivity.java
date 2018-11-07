@@ -1,4 +1,4 @@
-package com.example.vege.moviedb_ad172516;
+package com.example.vege.moviedb_ad172516.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.squareup.picasso.Picasso;
 
