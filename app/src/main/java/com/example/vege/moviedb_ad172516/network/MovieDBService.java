@@ -1,6 +1,7 @@
 package com.example.vege.moviedb_ad172516.network;
 
-import com.example.vege.moviedb_ad172516.models.MoviesResponse;
+import com.example.vege.moviedb_ad172516.models.movie.MoviesResponse;
+import com.example.vege.moviedb_ad172516.models.tvShow.TVShowsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -11,4 +12,10 @@ public interface MovieDBService {
     @GET("movie/popular")
     Call<MoviesResponse> getPopularMovies(@Query("api_key") String api_key,
                                           @Query("language") String language);
+
+    @GET("tv/popular")
+    Call<TVShowsResponse> getPopularTVShows(@Query("api_key") String api_key,
+                                            @Query("language") String language,
+                                            @Query("page") int page);
+
 }

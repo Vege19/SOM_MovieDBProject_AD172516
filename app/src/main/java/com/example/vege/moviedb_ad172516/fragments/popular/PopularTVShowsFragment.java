@@ -1,4 +1,4 @@
-package com.example.vege.moviedb_ad172516.fragments;
+package com.example.vege.moviedb_ad172516.fragments.popular;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,42 +13,31 @@ import android.view.ViewGroup;
 
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.adapters.Error;
-import com.example.vege.moviedb_ad172516.adapters.PopularAdapter;
-import com.example.vege.moviedb_ad172516.models.Movie;
-import com.example.vege.moviedb_ad172516.models.MovieRepository;
-import com.example.vege.moviedb_ad172516.models.OnGetMovieCallBack;
-import com.example.vege.moviedb_ad172516.network.MovieDBService;
+import com.example.vege.moviedb_ad172516.adapters.TVShowsAdapter;
+import com.example.vege.moviedb_ad172516.models.tvShow.OnGetTVShowCallBack;
+import com.example.vege.moviedb_ad172516.models.tvShow.PopularTVShowsRepository;
+import com.example.vege.moviedb_ad172516.models.tvShow.TVShow;
 
 import java.util.List;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class PopularFragment extends Fragment {
+public class PopularTVShowsFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
-    private PopularAdapter mAdapter;
-    private MovieRepository movieRepository;
+    private TVShowsAdapter mAdapter;
+    private PopularTVShowsRepository popularTVShowsRepository;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_popular_tvshows, container, false);
+
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mRecyclerView = getActivity().findViewById(R.id.rvPopularMovies);
-
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_popular, container, false);
-        return view;
-
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        mRecyclerView = getActivity().findViewById(R.id.rvPopularTVShows);
 
     }
 
@@ -56,20 +45,26 @@ public class PopularFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        //instancia de retrofit
-        movieRepository = MovieRepository.getInstance();
-
         //recyclerview
+        mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //sobreescribimos los metodos para llenar la recyclerview
-        movieRepository.getMovies(new OnGetMovieCallBack() {
-            @Override
-            public void onSuccess(List<Movie> movies) {
-                mAdapter = new PopularAdapter(movies, getContext());
-                mRecyclerView.setAdapter(mAdapter);
+        setPopularTVShowsRepository();
 
+    }
+
+    void setPopularTVShowsRepository() {
+
+        //instancia de retrofit
+        popularTVShowsRepository = PopularTVShowsRepository.getInstance();
+
+        //sobreescribimos los metodos para llenar la recyclerview
+        popularTVShowsRepository.getPopularTVShows(new OnGetTVShowCallBack() {
+            @Override
+            public void onSuccess(List<TVShow> tvShows) {
+                mAdapter = new TVShowsAdapter(tvShows, getContext());
+                mRecyclerView.setAdapter(mAdapter);
             }
 
             @Override
@@ -80,5 +75,4 @@ public class PopularFragment extends Fragment {
         });
 
     }
-
 }

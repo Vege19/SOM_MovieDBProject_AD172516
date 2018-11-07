@@ -1,6 +1,4 @@
-package com.example.vege.moviedb_ad172516.models;
-
-import com.example.vege.moviedb_ad172516.models.Movie;
+package com.example.vege.moviedb_ad172516.models.movie;
 
 import java.util.List;
 

@@ -1,24 +1,14 @@
 package com.example.vege.moviedb_ad172516;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BlurMaskFilter;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-import com.example.vege.moviedb_ad172516.models.Movie;
+import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-import com.squareup.picasso.Transformation;
-
-import ru.egslava.blurredview.BlurredImageView;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 

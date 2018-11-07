@@ -1,11 +1,11 @@
-package com.example.vege.moviedb_ad172516.models;
+package com.example.vege.moviedb_ad172516.models.tvShow;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MoviesResponse {
+public class TVShowsResponse {
 
     @SerializedName("page")
     @Expose
@@ -17,7 +17,7 @@ public class MoviesResponse {
 
     @SerializedName("results")
     @Expose
-    private List<Movie> movies;
+    private List<TVShow> tvShows;
 
     @SerializedName("total_pages")
     @Expose
@@ -39,12 +39,12 @@ public class MoviesResponse {
         this.totalResults = totalResults;
     }
 
-    public List<Movie> getMovies() {
-        return movies;
+    public List<TVShow> getTvShows() {
+        return tvShows;
     }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
+    public void setTvShows(List<TVShow> tvShows) {
+        this.tvShows = tvShows;
     }
 
     public int getTotalPages() {
@@ -54,5 +54,4 @@ public class MoviesResponse {
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
-
 }

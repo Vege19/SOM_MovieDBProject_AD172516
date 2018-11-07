@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.vege.moviedb_ad172516.fragments.PopularFragment;
+import com.example.vege.moviedb_ad172516.fragments.popular.PopularFragment;
 import com.example.vege.moviedb_ad172516.fragments.SearchFragment;
 import com.example.vege.moviedb_ad172516.fragments.TopRatedFragment;
 import com.example.vege.moviedb_ad172516.fragments.UpcomingFragment;

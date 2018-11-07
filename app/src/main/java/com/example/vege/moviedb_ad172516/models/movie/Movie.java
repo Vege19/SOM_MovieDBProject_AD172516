@@ -1,11 +1,9 @@
-package com.example.vege.moviedb_ad172516.models;
+package com.example.vege.moviedb_ad172516.models.movie;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class Movie implements Parcelable {
 

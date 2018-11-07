@@ -13,18 +13,17 @@ import android.widget.TextView;
 
 import com.example.vege.moviedb_ad172516.MovieDetailsActivity;
 import com.example.vege.moviedb_ad172516.R;
-import com.example.vege.moviedb_ad172516.models.Movie;
+import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
+public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
     private List<Movie> popularMovieList;
     private Context context;
 
-    public PopularAdapter(List<Movie> movies, Context context) {
+    public MoviesAdapter(List<Movie> movies, Context context) {
         this.popularMovieList = movies;
         this.context = context;
     }
