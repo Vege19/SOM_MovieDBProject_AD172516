@@ -4,12 +4,13 @@
     <item
         android:id="@+id/navigation_popular"
         android:icon="@drawable/ic_favorite_border_black_24dp"
-        android:title="@string/title_popular" />
+        android:title="@string/title_popular"
+        android:visible="false" />
 
     <item
         android:id="@+id/navigation_topRated"
         android:icon="@drawable/ic_star_border_black_24dp"
-        android:title="@string/title_top" />
+        android:title="@string/title_top"/>
 
     <item
         android:id="@+id/navigation_upcoming"

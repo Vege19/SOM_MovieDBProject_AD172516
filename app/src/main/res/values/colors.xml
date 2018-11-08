@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#000000</color>
-    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimary">#424242</color>
+    <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#ffffff</color>
-    <color name="primaryText">#FAFAFA</color>
-    <color name="secondaryText">#BDBDBD</color>
-    <color name="accentText">#c9c9c9</color>
+
+    <color name="primaryText">#ffffff</color>
+    <color name="secondaryText">#e2e2e2</color>
+
+    <color name="accentText">#f44336</color>
+
     <color name="background">#f6f6f6</color>
-    <color name="textBackground">#be000000</color>
-    <color name="ratingBarbackground">#d7d7d7</color>
+    <color name="detailsBackground">#eb212121</color>
+
 </resources>

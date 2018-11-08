@@ -60,7 +60,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         detailsOverview.setText(overview);
 
         TextView detailsRelease = findViewById(R.id.tvReleaseDate);
-        detailsRelease.setText(releaseDate.split("-")[0]);
+        detailsRelease.setText(releaseDate);
 
         TextView detailsRating = findViewById(R.id.popularMoviesRating);
         detailsRating.setText(String.valueOf(rating));

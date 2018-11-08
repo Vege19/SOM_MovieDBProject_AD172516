@@ -4,10 +4,11 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,6 @@ public class PopularFragment extends Fragment {
 
         mTabLayout = getActivity().findViewById(R.id.popularTabLayout);
         mViewPager = getActivity().findViewById(R.id.popularViewPager);
-
     }
 
     @Nullable
@@ -54,6 +54,9 @@ public class PopularFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        AppBarLayout mAppbar = getActivity().findViewById(R.id.popularAppBar);
+        mAppbar.setTargetElevation(0);
 
         createTabs();
 
@@ -82,9 +85,12 @@ public class PopularFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
+        //save viewpager instance state
         mBundleViewPager = new Bundle();
         Parcelable viewpagerState = mViewPager.onSaveInstanceState();
         mBundleViewPager.putParcelable(KEY_VIEWPAGER_STATE, viewpagerState);
 
     }
+
+
 }

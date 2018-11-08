@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MovieDB_AD172516</string>
     <string name="title_popular">Popular</string>
@@ -6,5 +7,5 @@
     <string name="title_search">Buscar</string>
     <string name="movie_title">Title</string>
     <string name="app_title">MovieLibrary</string>
-    <integer name="spanCount">1</integer>
+    <integer name="spanCount">3</integer>
 </resources>

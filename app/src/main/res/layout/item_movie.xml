@@ -3,14 +3,9 @@
     android:id="@+id/rlItem"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
-
-        <ImageView
-            android:id="@+id/ivPoster"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="TODO"
-            android:scaleType="centerCrop" />
+    android:layout_height="200dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true">
 
         <TextView
             android:id="@+id/tvTitle"
@@ -23,8 +18,16 @@
             android:elevation="4dp"
             android:text="@string/movie_title"
             android:textColor="@color/primaryText"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ivPoster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="TODO"
+            android:scaleType="centerCrop"
+            android:background="?android:attr/selectableItemBackground"/>
 
         <View
             android:layout_width="match_parent"
