@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Movie implements Parcelable {
 
     @SerializedName("title")
@@ -22,9 +24,16 @@ public class Movie implements Parcelable {
     @SerializedName("release_date")
     private String movieRelease;
 
+    @SerializedName("vote_average")
+    private float movieRate;
+
+    @SerializedName("genre_ids")
+    private List<Integer> movieGenres;
+
     public Movie() {
 
     }
+
 
     protected Movie(Parcel in) {
         movieTitle = in.readString();
@@ -32,6 +41,7 @@ public class Movie implements Parcelable {
         moviePoster = in.readString();
         movieBackdrop = in.readString();
         movieRelease = in.readString();
+        movieRate = in.readFloat();
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -86,6 +96,23 @@ public class Movie implements Parcelable {
         this.movieRelease = movieRelease;
     }
 
+    public float getMovieRate() {
+        return movieRate;
+    }
+
+    public void setMovieRate(float movieRate) {
+        this.movieRate = movieRate;
+    }
+
+    public List<Integer> getMovieGenres() {
+        return movieGenres;
+    }
+
+    public void setMovieGenres(List<Integer> movieGenres) {
+        this.movieGenres = movieGenres;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -98,6 +125,6 @@ public class Movie implements Parcelable {
         dest.writeString(moviePoster);
         dest.writeString(movieBackdrop);
         dest.writeString(movieRelease);
+        dest.writeFloat(movieRate);
     }
-
 }

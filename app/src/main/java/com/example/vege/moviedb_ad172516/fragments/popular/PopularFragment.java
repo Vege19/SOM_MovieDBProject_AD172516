@@ -1,43 +1,32 @@
 package com.example.vege.moviedb_ad172516.fragments.popular;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.vege.moviedb_ad172516.R;
-import com.example.vege.moviedb_ad172516.adapters.Error;
-import com.example.vege.moviedb_ad172516.adapters.MoviesAdapter;
 import com.example.vege.moviedb_ad172516.adapters.PopularViewPagerAdapter;
-import com.example.vege.moviedb_ad172516.adapters.TVShowsAdapter;
-import com.example.vege.moviedb_ad172516.models.movie.Movie;
-import com.example.vege.moviedb_ad172516.models.movie.PopularMoviesRepository;
-import com.example.vege.moviedb_ad172516.models.movie.OnGetMovieCallBack;
-import com.example.vege.moviedb_ad172516.models.tvShow.OnGetTVShowCallBack;
-import com.example.vege.moviedb_ad172516.models.tvShow.PopularTVShowsRepository;
-import com.example.vege.moviedb_ad172516.models.tvShow.TVShow;
-
-import java.util.List;
 
 public class PopularFragment extends Fragment {
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private PopularViewPagerAdapter mViewPagerAdapter;
+    private String KEY_VIEWPAGER_STATE = "viewpager_state";
+    private Bundle mBundleViewPager;
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -60,8 +49,6 @@ public class PopularFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
     }
 
     @Override
@@ -69,6 +56,12 @@ public class PopularFragment extends Fragment {
         super.onResume();
 
         createTabs();
+
+        //savedInstanceState
+        if (mBundleViewPager != null) {
+            Parcelable viewpagerState = mBundleViewPager.getParcelable(KEY_VIEWPAGER_STATE);
+            mViewPager.onRestoreInstanceState(viewpagerState);
+        }
 
     }
 
@@ -85,4 +78,13 @@ public class PopularFragment extends Fragment {
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        mBundleViewPager = new Bundle();
+        Parcelable viewpagerState = mViewPager.onSaveInstanceState();
+        mBundleViewPager.putParcelable(KEY_VIEWPAGER_STATE, viewpagerState);
+
+    }
 }

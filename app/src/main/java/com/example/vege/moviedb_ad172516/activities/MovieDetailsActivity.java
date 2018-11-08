@@ -5,11 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
@@ -18,7 +22,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
 
-        //toolbar config
+        //toolbar support
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.detailTooolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -40,6 +44,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
         String title = getMovie.getMovieTitle();
         String overview = getMovie.getMovieSynopsis();
         String releaseDate = getMovie.getMovieRelease();
+        List<Integer> genres = getMovie.getMovieGenres();
+        float rating = getMovie.getMovieRate();
 
         //llamamos resources y seteamos los datos recuperados
         final ImageView posterBackground = findViewById(R.id.ivDetailsBackground);
@@ -51,11 +57,15 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 .into(posterBackground);
 
         TextView detailsOverview =findViewById(R.id.tvOverview);
-        detailsOverview.setText(overview + overview + overview);
+        detailsOverview.setText(overview);
 
         TextView detailsRelease = findViewById(R.id.tvReleaseDate);
-        detailsRelease.setText("Release date: " + releaseDate);
+        detailsRelease.setText(releaseDate.split("-")[0]);
 
+        TextView detailsRating = findViewById(R.id.popularMoviesRating);
+        detailsRating.setText(String.valueOf(rating));
+
+        //actionbar
         getSupportActionBar().setTitle(title);
 
     }

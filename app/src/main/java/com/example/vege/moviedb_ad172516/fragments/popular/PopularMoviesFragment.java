@@ -1,6 +1,7 @@
 package com.example.vege.moviedb_ad172516.fragments.popular;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,9 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.vege.moviedb_ad172516.R;
-import com.example.vege.moviedb_ad172516.adapters.Error;
 import com.example.vege.moviedb_ad172516.adapters.MoviesAdapter;
 import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.example.vege.moviedb_ad172516.models.movie.OnGetMovieCallBack;
@@ -24,7 +25,10 @@ public class PopularMoviesFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private MoviesAdapter mMoviesAdapter;
-    private PopularMoviesRepository popularMoviesRepository;
+    private static PopularMoviesRepository popularMoviesRepository;
+
+    private static Bundle mBundleRecyclerView;
+    private final String KEY_RECYCLER_STATE = "recycler_state";
 
     @Nullable
     @Override
@@ -52,6 +56,12 @@ public class PopularMoviesFragment extends Fragment {
         //obtenemos las peliculas
         setPopularMoviesRepository();
 
+        //savedInstanceState
+        if (mBundleRecyclerView != null) {
+            Parcelable listState = mBundleRecyclerView.getParcelable(KEY_RECYCLER_STATE);
+            mRecyclerView.getLayoutManager().onRestoreInstanceState(listState);
+        }
+
     }
 
     void setPopularMoviesRepository() {
@@ -70,10 +80,20 @@ public class PopularMoviesFragment extends Fragment {
 
             @Override
             public void onError() {
-                mRecyclerView.setAdapter(new Error());
+                Toast.makeText(getContext(), "Network Error.", Toast.LENGTH_SHORT).show();
 
             }
         });
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        //save recyclewview state
+        mBundleRecyclerView = new Bundle();
+        Parcelable listState = mRecyclerView.getLayoutManager().onSaveInstanceState();
+        mBundleRecyclerView.putParcelable(KEY_RECYCLER_STATE, listState);
     }
 }

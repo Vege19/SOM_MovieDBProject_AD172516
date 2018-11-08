@@ -5,7 +5,8 @@
     <color name="colorAccent">#ffffff</color>
     <color name="primaryText">#FAFAFA</color>
     <color name="secondaryText">#BDBDBD</color>
-    <color name="accentText">#ffffff</color>
+    <color name="accentText">#c9c9c9</color>
     <color name="background">#f6f6f6</color>
     <color name="textBackground">#be000000</color>
+    <color name="ratingBarbackground">#d7d7d7</color>
 </resources>

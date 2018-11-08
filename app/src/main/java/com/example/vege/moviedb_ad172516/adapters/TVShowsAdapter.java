@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.vege.moviedb_ad172516.activities.MovieDetailsActivity;
 import com.example.vege.moviedb_ad172516.R;
+import com.example.vege.moviedb_ad172516.activities.TVShowDetailsActivity;
 import com.example.vege.moviedb_ad172516.models.tvShow.TVShow;
 import com.squareup.picasso.Picasso;
 
@@ -52,7 +53,7 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsV
         viewHolder.mItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, MovieDetailsActivity.class);
+                Intent intent = new Intent(context, TVShowDetailsActivity.class);
                 intent.putExtra("tvshow_details", tvShow);
                 context.startActivity(intent);
             }

@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView mBottomNavigationView;
 
+    private int layoutID = R.id.mainContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,11 @@ public class MainActivity extends AppCompatActivity {
         mBottomNavigationView = findViewById(R.id.navigationView);
         mBottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, new PopularFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(layoutID, new PopularFragment()).commit();
+
+        if (savedInstanceState != null) {
+            layoutID = savedInstanceState.getInt("layout_ID", R.id.mainContainer);
+        }
 
     }
 
@@ -59,4 +65,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+    }
 }

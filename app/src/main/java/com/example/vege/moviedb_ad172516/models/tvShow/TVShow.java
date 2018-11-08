@@ -22,12 +22,16 @@ public class TVShow implements Parcelable {
     @SerializedName("first_air_date")
     private String tvshowRelease;
 
+    @SerializedName("vote_average")
+    private float tvshowRating;
+
     protected TVShow(Parcel in) {
         tvshowTitle = in.readString();
         tvshowSynopsis = in.readString();
         tvshowPoster = in.readString();
         tvshowBackdrop = in.readString();
         tvshowRelease = in.readString();
+        tvshowRating = in.readFloat();
     }
 
     public static final Creator<TVShow> CREATOR = new Creator<TVShow>() {
@@ -82,6 +86,9 @@ public class TVShow implements Parcelable {
         this.tvshowRelease = tvshowRelease;
     }
 
+    public float getTvshowRating() {
+        return tvshowRating;
+    }
 
     @Override
     public int describeContents() {
@@ -95,5 +102,6 @@ public class TVShow implements Parcelable {
         dest.writeString(tvshowPoster);
         dest.writeString(tvshowBackdrop);
         dest.writeString(tvshowRelease);
+        dest.writeFloat(tvshowRating);
     }
 }

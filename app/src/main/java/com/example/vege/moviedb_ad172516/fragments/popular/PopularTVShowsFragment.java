@@ -1,6 +1,7 @@
 package com.example.vege.moviedb_ad172516.fragments.popular;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.vege.moviedb_ad172516.R;
-import com.example.vege.moviedb_ad172516.adapters.Error;
 import com.example.vege.moviedb_ad172516.adapters.TVShowsAdapter;
 import com.example.vege.moviedb_ad172516.models.tvShow.OnGetTVShowCallBack;
 import com.example.vege.moviedb_ad172516.models.tvShow.PopularTVShowsRepository;
@@ -25,6 +25,9 @@ public class PopularTVShowsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private TVShowsAdapter mAdapter;
     private PopularTVShowsRepository popularTVShowsRepository;
+
+    private static Bundle mBundleRecyclerView;
+    private final String KEY_RECYCLER_STATE = "recycler_state";
 
     @Nullable
     @Override
@@ -52,6 +55,12 @@ public class PopularTVShowsFragment extends Fragment {
 
         setPopularTVShowsRepository();
 
+        //savedInstanceState
+        if (mBundleRecyclerView != null) {
+            Parcelable listState = mBundleRecyclerView.getParcelable(KEY_RECYCLER_STATE);
+            mRecyclerView.getLayoutManager().onRestoreInstanceState(listState);
+        }
+
     }
 
     void setPopularTVShowsRepository() {
@@ -69,10 +78,19 @@ public class PopularTVShowsFragment extends Fragment {
 
             @Override
             public void onError() {
-                mRecyclerView.setAdapter(new Error());
 
             }
         });
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        //save recyclewview state
+        mBundleRecyclerView = new Bundle();
+        Parcelable listState = mRecyclerView.getLayoutManager().onSaveInstanceState();
+        mBundleRecyclerView.putParcelable(KEY_RECYCLER_STATE, listState);
     }
 }

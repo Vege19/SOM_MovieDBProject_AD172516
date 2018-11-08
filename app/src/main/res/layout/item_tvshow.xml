@@ -33,7 +33,6 @@
             android:layout_marginStart="0dp"
             android:layout_marginBottom="0dp"
             android:background="@drawable/background_movie_title">
-
         </View>
 
 </RelativeLayout>

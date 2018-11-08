@@ -23,8 +23,8 @@
             android:elevation="4dp"
             android:text="@string/movie_title"
             android:textColor="@color/primaryText"
-            android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
