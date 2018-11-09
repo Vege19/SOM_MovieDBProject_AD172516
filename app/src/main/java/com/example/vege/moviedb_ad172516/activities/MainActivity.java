@@ -15,8 +15,7 @@ import com.example.vege.moviedb_ad172516.fragments.UpcomingFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    BottomNavigationView mBottomNavigationView;
-
+    private BottomNavigationView mBottomNavigationView;
     private int layoutID = R.id.mainContainer;
 
     @Override
@@ -28,10 +27,6 @@ public class MainActivity extends AppCompatActivity {
         mBottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(layoutID, new PopularFragment()).commit();
-
-        if (savedInstanceState != null) {
-            layoutID = savedInstanceState.getInt("layout_ID", R.id.mainContainer);
-        }
 
     }
 
@@ -58,16 +53,11 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, selectedFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(layoutID, selectedFragment).commit();
 
                     return true;
 
                 }
             };
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-    }
 }

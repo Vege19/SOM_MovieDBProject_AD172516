@@ -1,5 +1,6 @@
 package com.example.vege.moviedb_ad172516.network;
 
+import com.example.vege.moviedb_ad172516.models.genre.GenresResponse;
 import com.example.vege.moviedb_ad172516.models.movie.MoviesResponse;
 import com.example.vege.moviedb_ad172516.models.tvShow.TVShowsResponse;
 
@@ -17,5 +18,10 @@ public interface MovieDBService {
     Call<TVShowsResponse> getPopularTVShows(@Query("api_key") String api_key,
                                             @Query("language") String language,
                                             @Query("page") int page);
+
+    @GET("genre/movie/list")
+    Call<GenresResponse> getGenres(
+            @Query("api_key") String api_key,
+            @Query("language") String language);
 
 }

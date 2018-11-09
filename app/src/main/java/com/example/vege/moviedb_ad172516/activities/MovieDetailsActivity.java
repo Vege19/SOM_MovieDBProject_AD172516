@@ -5,15 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
@@ -44,8 +40,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
         String title = getMovie.getMovieTitle();
         String overview = getMovie.getMovieSynopsis();
         String releaseDate = getMovie.getMovieRelease();
-        List<Integer> genres = getMovie.getMovieGenres();
         float rating = getMovie.getMovieRate();
+
 
         //llamamos resources y seteamos los datos recuperados
         final ImageView posterBackground = findViewById(R.id.ivDetailsBackground);

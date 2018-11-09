@@ -9,9 +9,11 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.adapters.PopularViewPagerAdapter;
@@ -27,6 +29,7 @@ public class PopularFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
     }
 
     @Override
@@ -55,15 +58,13 @@ public class PopularFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        AppBarLayout mAppbar = getActivity().findViewById(R.id.popularAppBar);
-        mAppbar.setTargetElevation(0);
-
         createTabs();
 
         //savedInstanceState
         if (mBundleViewPager != null) {
             Parcelable viewpagerState = mBundleViewPager.getParcelable(KEY_VIEWPAGER_STATE);
             mViewPager.onRestoreInstanceState(viewpagerState);
+
         }
 
     }
@@ -81,9 +82,10 @@ public class PopularFragment extends Fragment {
 
     }
 
+
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
         //save viewpager instance state
         mBundleViewPager = new Bundle();
@@ -91,6 +93,4 @@ public class PopularFragment extends Fragment {
         mBundleViewPager.putParcelable(KEY_VIEWPAGER_STATE, viewpagerState);
 
     }
-
-
 }

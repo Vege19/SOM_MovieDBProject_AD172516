@@ -1,6 +1,7 @@
 package com.example.vege.moviedb_ad172516.models.movie;
 
-import com.example.vege.moviedb_ad172516.BuildConfig;
+import com.example.vege.moviedb_ad172516.models.genre.GenresResponse;
+import com.example.vege.moviedb_ad172516.models.genre.OnGetGenresCallBack;
 import com.example.vege.moviedb_ad172516.network.MovieDBService;
 
 import retrofit2.Call;
@@ -67,6 +68,28 @@ public class PopularMoviesRepository {
 
                 });
 
+    }
+
+    public void getPopularMoviesGenres(final OnGetGenresCallBack genresCallBack) {
+        api.getGenres("888eed6d5b3879fea3cf535a3b85d827", "es-ES")
+                .enqueue(new Callback<GenresResponse>() {
+                    @Override
+                    public void onResponse(Call<GenresResponse> call, Response<GenresResponse> response) {
+                        if (response.isSuccessful()) {
+                            GenresResponse genresResponse = response.body();
+                            if (genresResponse != null && genresResponse.getGenres() != null) {
+                                genresCallBack.OnSuccess(genresResponse.getGenres());
+                            } else {
+                                genresCallBack.onError();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<GenresResponse> call, Throwable t) {
+                        genresCallBack.onError();
+                    }
+                });
     }
 
 

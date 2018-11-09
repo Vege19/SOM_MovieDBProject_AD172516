@@ -1,6 +1,5 @@
 package com.example.vege.moviedb_ad172516.models.movie;
 
-import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

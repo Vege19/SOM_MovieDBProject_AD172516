@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.adapters.MoviesAdapter;
+import com.example.vege.moviedb_ad172516.models.genre.Genre;
+import com.example.vege.moviedb_ad172516.models.genre.OnGetGenresCallBack;
 import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.example.vege.moviedb_ad172516.models.movie.OnGetMovieCallBack;
 import com.example.vege.moviedb_ad172516.models.movie.PopularMoviesRepository;
@@ -29,6 +31,12 @@ public class PopularMoviesFragment extends Fragment {
 
     private static Bundle mBundleRecyclerView;
     private final String KEY_RECYCLER_STATE = "recycler_state";
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+    }
 
     @Nullable
     @Override
@@ -53,8 +61,11 @@ public class PopularMoviesFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), getActivity().getResources().getInteger(R.integer.spanCount)));
 
+        //instancia de retrofit
+        popularMoviesRepository = PopularMoviesRepository.getInstance();
+
         //obtenemos las peliculas
-        setPopularMoviesRepository();
+        getPopularMoviesGenres();
 
         //savedInstanceState
         if (mBundleRecyclerView != null) {
@@ -64,16 +75,28 @@ public class PopularMoviesFragment extends Fragment {
 
     }
 
-    void setPopularMoviesRepository() {
+    private void getPopularMoviesGenres() {
 
-        //instancia de retrofit
-        popularMoviesRepository = PopularMoviesRepository.getInstance();
+        popularMoviesRepository.getPopularMoviesGenres(new OnGetGenresCallBack() {
+            @Override
+            public void OnSuccess(List<Genre> genres) {
+                setPopularMoviesRepository(genres);
+            }
+
+            @Override
+            public void onError() {
+                Toast.makeText(getContext(), "Network Error.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    void setPopularMoviesRepository(final List<Genre> genres) {
 
         //sobreescribimos los metodos para llenar la recyclerview
         popularMoviesRepository.getMovies(new OnGetMovieCallBack() {
             @Override
             public void onSuccess(List<Movie> movies) {
-                mMoviesAdapter = new MoviesAdapter(movies, getContext());
+                mMoviesAdapter = new MoviesAdapter(movies, genres, getContext());
                 mRecyclerView.setAdapter(mMoviesAdapter);
 
             }

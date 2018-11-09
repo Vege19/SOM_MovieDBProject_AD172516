@@ -10,6 +10,6 @@
     <color name="accentText">#f44336</color>
 
     <color name="background">#f6f6f6</color>
-    <color name="detailsBackground">#eb212121</color>
+    <color name="detailsBackground">#dc212121</color>
 
 </resources>
