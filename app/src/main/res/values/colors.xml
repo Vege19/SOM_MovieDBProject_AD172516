@@ -7,9 +7,14 @@
     <color name="primaryText">#ffffff</color>
     <color name="secondaryText">#e2e2e2</color>
 
-    <color name="accentText">#f44336</color>
+    <color name="transparentWhite">#97ffffff</color>
+
+    <color name="popular">#f44336</color>
+    <color name="toprated">#673ab7</color>
+    <color name="upcoming">#009688</color>
+    <color name="search">#1769aa</color>
 
     <color name="background">#f6f6f6</color>
-    <color name="detailsBackground">#dc212121</color>
+    <color name="detailsBackground">#ac000000</color>
 
 </resources>

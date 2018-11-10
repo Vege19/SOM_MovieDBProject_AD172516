@@ -7,7 +7,6 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
     tools:context=".activities.MainActivity">
 
     <FrameLayout
@@ -23,7 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/popular"
         app:itemIconTint="@color/nav_colors"
         app:itemTextColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"

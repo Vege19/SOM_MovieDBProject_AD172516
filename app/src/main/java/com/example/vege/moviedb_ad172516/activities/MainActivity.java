@@ -3,6 +3,8 @@ package com.example.vege.moviedb_ad172516.activities;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,16 +19,20 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView mBottomNavigationView;
     private int layoutID = R.id.mainContainer;
+    private PopularFragment popularFragment = new PopularFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //R
         mBottomNavigationView = findViewById(R.id.navigationView);
         mBottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(layoutID, new PopularFragment()).commit();
+
+        getWindow().setStatusBarColor(getResources().getColor(R.color.popular));
 
     }
 
@@ -41,15 +47,24 @@ public class MainActivity extends AppCompatActivity {
                     switch (menuItem.getItemId()) {
                         case R.id.navigation_popular:
                             selectedFragment = new PopularFragment();
+                            //cambiara tambien el color del btmmnavview
+                            mBottomNavigationView.setBackgroundColor(getResources().getColor(R.color.popular));
+                            getWindow().setStatusBarColor(getResources().getColor(R.color.popular));
                             break;
                         case R.id.navigation_topRated:
                             selectedFragment = new TopRatedFragment();
+                            mBottomNavigationView.setBackgroundColor(getResources().getColor(R.color.toprated));
+                            getWindow().setStatusBarColor(getResources().getColor(R.color.toprated));
                             break;
                         case R.id.navigation_upcoming:
                             selectedFragment = new UpcomingFragment();
+                            mBottomNavigationView.setBackgroundColor(getResources().getColor(R.color.upcoming));
+                            getWindow().setStatusBarColor(getResources().getColor(R.color.upcoming));
                             break;
                         case R.id.navigation_search:
                             selectedFragment = new SearchFragment();
+                            mBottomNavigationView.setBackgroundColor(getResources().getColor(R.color.search));
+                            getWindow().setStatusBarColor(getResources().getColor(R.color.search));
                             break;
                     }
 

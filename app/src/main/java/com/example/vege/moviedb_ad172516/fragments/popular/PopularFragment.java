@@ -20,7 +20,7 @@ import com.example.vege.moviedb_ad172516.adapters.PopularViewPagerAdapter;
 
 public class PopularFragment extends Fragment {
 
-    private TabLayout mTabLayout;
+    public static TabLayout mTabLayout;
     private ViewPager mViewPager;
     private PopularViewPagerAdapter mViewPagerAdapter;
     private String KEY_VIEWPAGER_STATE = "viewpager_state";

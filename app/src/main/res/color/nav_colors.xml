@@ -4,6 +4,6 @@
     <item android:color="@color/colorAccent"
         android:state_checked="true"/>
 
-    <item android:color="@android:color/darker_gray"/>
+    <item android:color="#97ffffff"/>
 
 </selector>

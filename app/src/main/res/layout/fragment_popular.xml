@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
-        app:elevation="0dp">
+        app:elevation="0dp"
+        android:background="@color/popular">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/popularToolBar"
@@ -48,9 +49,9 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            app:tabSelectedTextColor="@color/colorAccent"
-           app:tabTextColor="@android:color/darker_gray"
+           app:tabTextColor="@color/transparentWhite"
            app:tabIndicatorColor="@color/colorAccent"
-           android:background="@color/colorPrimary"
+           android:background="@color/popular"
            app:layout_behavior="@string/appbar_scrolling_view_behavior"
            android:elevation="4dp">
 
