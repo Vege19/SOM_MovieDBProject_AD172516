@@ -9,10 +9,14 @@
 
     <color name="transparentWhite">#97ffffff</color>
 
-    <color name="popular">#f44336</color>
-    <color name="toprated">#673ab7</color>
-    <color name="upcoming">#009688</color>
-    <color name="search">#1769aa</color>
+    <color name="popular">#A43931</color>
+    <color name="popularDark">#722722</color>
+    <color name="toprated">#302b63</color>
+    <color name="topratedDark">#211e45</color>
+    <color name="upcoming">#3b8d99</color>
+    <color name="upcomingDark">#29626b</color>
+    <color name="search">#2a5298</color>
+    <color name="searchDark">#1d396a</color>
 
     <color name="background">#f6f6f6</color>
     <color name="detailsBackground">#ac000000</color>

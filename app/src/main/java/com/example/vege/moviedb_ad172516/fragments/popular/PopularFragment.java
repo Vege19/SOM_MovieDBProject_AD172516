@@ -24,13 +24,8 @@ public class PopularFragment extends Fragment {
     private ViewPager mViewPager;
     private PopularViewPagerAdapter mViewPagerAdapter;
     private String KEY_VIEWPAGER_STATE = "viewpager_state";
-    private Bundle mBundleViewPager;
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-    }
+    private String KEY_TAB_POSITION = "tab_position";
+    private Bundle mBundleViewPager, mBundleTabPosition;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -49,22 +44,26 @@ public class PopularFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
+        createTabs();
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        createTabs();
-
         //savedInstanceState
         if (mBundleViewPager != null) {
             Parcelable viewpagerState = mBundleViewPager.getParcelable(KEY_VIEWPAGER_STATE);
             mViewPager.onRestoreInstanceState(viewpagerState);
 
+        }
+
+        if (mBundleTabPosition != null) {
+            int tabPosition = mBundleTabPosition.getInt(KEY_TAB_POSITION);
+            mTabLayout.getTabAt(tabPosition).select();
         }
 
     }
@@ -91,6 +90,10 @@ public class PopularFragment extends Fragment {
         mBundleViewPager = new Bundle();
         Parcelable viewpagerState = mViewPager.onSaveInstanceState();
         mBundleViewPager.putParcelable(KEY_VIEWPAGER_STATE, viewpagerState);
+
+        mBundleTabPosition = new Bundle();
+        int tabPosition = mTabLayout.getSelectedTabPosition();
+        mBundleTabPosition.putInt(KEY_TAB_POSITION, tabPosition);
 
     }
 }

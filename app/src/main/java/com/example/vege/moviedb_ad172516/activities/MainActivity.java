@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(layoutID, new PopularFragment()).commit();
 
-        getWindow().setStatusBarColor(getResources().getColor(R.color.popular));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.popularDark));
 
     }
 
@@ -49,22 +49,22 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new PopularFragment();
                             //cambiara tambien el color del btmmnavview
                             mBottomNavigationView.setBackgroundColor(getResources().getColor(R.color.popular));
-                            getWindow().setStatusBarColor(getResources().getColor(R.color.popular));
+                            getWindow().setStatusBarColor(getResources().getColor(R.color.popularDark));
                             break;
                         case R.id.navigation_topRated:
                             selectedFragment = new TopRatedFragment();
                             mBottomNavigationView.setBackgroundColor(getResources().getColor(R.color.toprated));
-                            getWindow().setStatusBarColor(getResources().getColor(R.color.toprated));
+                            getWindow().setStatusBarColor(getResources().getColor(R.color.topratedDark));
                             break;
                         case R.id.navigation_upcoming:
                             selectedFragment = new UpcomingFragment();
                             mBottomNavigationView.setBackgroundColor(getResources().getColor(R.color.upcoming));
-                            getWindow().setStatusBarColor(getResources().getColor(R.color.upcoming));
+                            getWindow().setStatusBarColor(getResources().getColor(R.color.upcomingDark));
                             break;
                         case R.id.navigation_search:
                             selectedFragment = new SearchFragment();
                             mBottomNavigationView.setBackgroundColor(getResources().getColor(R.color.search));
-                            getWindow().setStatusBarColor(getResources().getColor(R.color.search));
+                            getWindow().setStatusBarColor(getResources().getColor(R.color.searchDark));
                             break;
                     }
 
