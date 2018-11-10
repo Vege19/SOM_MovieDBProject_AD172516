@@ -24,7 +24,7 @@ import java.util.List;
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
     private List<Movie> popularMovieList;
-    public static List<Genre> allGenres;
+    private static List<Genre> allGenres;
     private Context context;
 
     public MoviesAdapter(List<Movie> movies, List<Genre> allGenres, Context context) {

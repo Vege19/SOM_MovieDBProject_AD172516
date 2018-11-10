@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class TVShow implements Parcelable {
 
     @SerializedName("name")
@@ -24,6 +26,9 @@ public class TVShow implements Parcelable {
 
     @SerializedName("vote_average")
     private float tvshowRating;
+
+    @SerializedName("genre_ids")
+    private List<Integer> tvshowGenres;
 
     protected TVShow(Parcel in) {
         tvshowTitle = in.readString();
@@ -88,6 +93,10 @@ public class TVShow implements Parcelable {
 
     public float getTvshowRating() {
         return tvshowRating;
+    }
+
+    public List<Integer> getTvshowGenres() {
+        return tvshowGenres;
     }
 
     @Override

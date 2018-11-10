@@ -20,12 +20,25 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="28dp"
         android:elevation="4dp"
         android:text="@string/movie_title"
         android:textColor="@color/primaryText"
         android:textStyle="bold"
         android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/tvTVShowGenres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="1dp"
+        android:text="@string/movie_title"
+        android:textColor="@color/secondaryText"
+        android:textSize="14sp" />
 
     <View
         android:layout_width="match_parent"

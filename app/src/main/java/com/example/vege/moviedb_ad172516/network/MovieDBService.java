@@ -20,8 +20,11 @@ public interface MovieDBService {
 
     @GET("tv/popular")
     Call<TVShowsResponse> getPopularTVShows(@Query("api_key") String api_key,
-                                            @Query("language") String language,
-                                            @Query("page") int page);
+                                            @Query("language") String language);
+
+    @GET("tv/top_rated")
+    Call<TVShowsResponse> getTopRatedTVShows(@Query("api_key") String api_key,
+                                            @Query("language") String language);
 
     @GET("genre/movie/list")
     Call<GenresResponse> getGenres(

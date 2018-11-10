@@ -11,36 +11,36 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PopularTVShowsRepository {
+public class TopRatedTVShowsRepository {
 
     //retrofit utilities
     private static final String BASE_URL = "https://api.themoviedb.org/3/";
     private static MovieDBService api;
-    private static PopularTVShowsRepository popularTVShowsRepository;
+    private static TopRatedTVShowsRepository topRatedTVShowsRepository;
 
-    public PopularTVShowsRepository(MovieDBService api) {
+    TopRatedTVShowsRepository(MovieDBService api) {
         this.api = api;
     }
 
     //configuracion de la base de retrofit
-    public static PopularTVShowsRepository getInstance() {
-        if (popularTVShowsRepository == null) {
+    public static TopRatedTVShowsRepository getInstance() {
+        if (topRatedTVShowsRepository == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            popularTVShowsRepository = new PopularTVShowsRepository(retrofit.create(MovieDBService.class));
+           topRatedTVShowsRepository = new TopRatedTVShowsRepository(retrofit.create(MovieDBService.class));
 
         }
 
-        return popularTVShowsRepository;
+        return topRatedTVShowsRepository;
     }
 
     //llamamos los datos accediento con nuestra api_key
-    public void getPopularTVShows(final OnGetTVShowCallBack callBack) {
+    public void getTopRatedTVShows(final OnGetTVShowCallBack callBack) {
 
-        api.getPopularTVShows(BuildConfig.MOVIEDBAPIKEY, "es-ES")
+        api.getTopRatedTVShows(BuildConfig.MOVIEDBAPIKEY, "es-ES")
                 .enqueue(new Callback<TVShowsResponse>() {
                     @Override
                     public void onResponse(Call<TVShowsResponse> call, Response<TVShowsResponse> response) {
@@ -71,8 +71,7 @@ public class PopularTVShowsRepository {
 
     }
 
-
-    public void getPopularTVShowsGenres(final OnGetGenresCallBack genresCallBack) {
+    public void getTopRatedTVShowsGenres(final OnGetGenresCallBack genresCallBack) {
         api.getGenres(BuildConfig.MOVIEDBAPIKEY, "es-ES")
                 .enqueue(new Callback<GenresResponse>() {
                     @Override
@@ -93,4 +92,5 @@ public class PopularTVShowsRepository {
                     }
                 });
     }
+
 }
