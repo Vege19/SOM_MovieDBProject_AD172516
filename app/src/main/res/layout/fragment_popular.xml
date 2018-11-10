@@ -9,14 +9,14 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/popularAppBar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="wrap_content"
         android:elevation="0dp"
         app:elevation="0dp">
-        
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/popularToolBar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_height="wrap_content"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
             android:elevation="0dp"
             app:layout_scrollFlags="scroll|enterAlways|snap">
@@ -37,31 +37,30 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/popularTabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabSelectedTextColor="@color/colorAccent"
-            app:tabTextColor="@android:color/darker_gray"
-            app:tabIndicatorColor="@color/colorAccent"
-            android:background="@color/colorPrimary"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:elevation="4dp">
+       <android.support.design.widget.TabLayout
+           android:id="@+id/popularTabLayout"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:tabSelectedTextColor="@color/colorAccent"
+           app:tabTextColor="@android:color/darker_gray"
+           app:tabIndicatorColor="@color/colorAccent"
+           android:background="@color/colorPrimary"
+           app:layout_behavior="@string/appbar_scrolling_view_behavior"
+           android:elevation="4dp">
 
-        </android.support.design.widget.TabLayout>
+       </android.support.design.widget.TabLayout>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/popularViewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+       <android.support.v4.view.ViewPager
+           android:id="@+id/popularViewPager"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent" />
 
-    </LinearLayout>
+   </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

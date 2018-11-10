@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.fragments.popular.PopularFragment;
 import com.example.vege.moviedb_ad172516.fragments.SearchFragment;
-import com.example.vege.moviedb_ad172516.fragments.TopRatedFragment;
+import com.example.vege.moviedb_ad172516.fragments.toprated.TopRatedFragment;
 import com.example.vege.moviedb_ad172516.fragments.UpcomingFragment;
 
 public class MainActivity extends AppCompatActivity {

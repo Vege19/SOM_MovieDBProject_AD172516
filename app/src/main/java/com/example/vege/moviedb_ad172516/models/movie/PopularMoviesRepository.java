@@ -1,5 +1,6 @@
 package com.example.vege.moviedb_ad172516.models.movie;
 
+import com.example.vege.moviedb_ad172516.BuildConfig;
 import com.example.vege.moviedb_ad172516.models.genre.GenresResponse;
 import com.example.vege.moviedb_ad172516.models.genre.OnGetGenresCallBack;
 import com.example.vege.moviedb_ad172516.network.MovieDBService;
@@ -39,7 +40,7 @@ public class PopularMoviesRepository {
     //llamamos los datos accediento con nuestra api_key
     public void getMovies(final OnGetMovieCallBack callBack) {
 
-        api.getPopularMovies("888eed6d5b3879fea3cf535a3b85d827", "es-ES")
+        api.getPopularMovies(BuildConfig.MOVIEDBAPIKEY, "es-ES")
                 .enqueue(new Callback<MoviesResponse>() {
                     @Override
                     public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
@@ -71,7 +72,7 @@ public class PopularMoviesRepository {
     }
 
     public void getPopularMoviesGenres(final OnGetGenresCallBack genresCallBack) {
-        api.getGenres("888eed6d5b3879fea3cf535a3b85d827", "es-ES")
+        api.getGenres(BuildConfig.MOVIEDBAPIKEY, "es-ES")
                 .enqueue(new Callback<GenresResponse>() {
                     @Override
                     public void onResponse(Call<GenresResponse> call, Response<GenresResponse> response) {

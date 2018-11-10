@@ -1,5 +1,6 @@
 package com.example.vege.moviedb_ad172516.models.tvShow;
 
+import com.example.vege.moviedb_ad172516.BuildConfig;
 import com.example.vege.moviedb_ad172516.network.MovieDBService;
 
 import retrofit2.Call;
@@ -37,7 +38,7 @@ public class PopularTVShowsRepository {
     //llamamos los datos accediento con nuestra api_key
     public void getPopularTVShows(final OnGetTVShowCallBack callBack) {
 
-        api.getPopularTVShows("888eed6d5b3879fea3cf535a3b85d827", "es-ES", 1)
+        api.getPopularTVShows(BuildConfig.MOVIEDBAPIKEY, "es-ES", 1)
                 .enqueue(new Callback<TVShowsResponse>() {
                     @Override
                     public void onResponse(Call<TVShowsResponse> call, Response<TVShowsResponse> response) {
