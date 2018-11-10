@@ -51,8 +51,8 @@ public class TopRatedTVShowsFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         //recyclerview
         mRecyclerView.setHasFixedSize(true);
@@ -62,6 +62,12 @@ public class TopRatedTVShowsFragment extends Fragment {
         topRatedTVShowsRepository = TopRatedTVShowsRepository.getInstance();
 
         getTopRatedTVShowsGenres();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         //savedInstanceState
         if (mBundleRecyclerView != null) {

@@ -77,7 +77,7 @@ public class TVShow implements Parcelable {
     }
 
     public String getTvshowBackdrop() {
-        return "http://image.tmdb.org/t/p/w1280" + tvshowBackdrop;
+        return "http://image.tmdb.org/t/p/w500" + tvshowBackdrop;
     }
 
     public void setTvshowBackdrop(String tvshowBackdrop) {

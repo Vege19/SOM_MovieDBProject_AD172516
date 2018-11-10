@@ -74,7 +74,7 @@ public class Movie implements Parcelable {
     }
 
     public String getMoviePoster() {
-        return "http://image.tmdb.org/t/p/original" + moviePoster;
+        return "http://image.tmdb.org/t/p/w500" + moviePoster;
     }
 
     public void setMoviePoster(String moviePoster) {
@@ -82,7 +82,7 @@ public class Movie implements Parcelable {
     }
 
     public String getMovieBackdrop() {
-        return "http://image.tmdb.org/t/p/w1280" + movieBackdrop;
+        return "http://image.tmdb.org/t/p/w500" + movieBackdrop;
     }
 
     public void setMovieBackdrop(String movieBackdrop) {

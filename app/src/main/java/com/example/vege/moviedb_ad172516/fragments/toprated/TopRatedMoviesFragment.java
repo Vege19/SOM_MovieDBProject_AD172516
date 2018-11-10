@@ -47,8 +47,8 @@ public class TopRatedMoviesFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         //recyclerview
         mRecyclerView.setHasFixedSize(true);
@@ -58,6 +58,11 @@ public class TopRatedMoviesFragment extends Fragment {
         topRatedMoviesRepository = TopRatedMoviesRepository.getInstance();
 
         getTopRatedMoviesGenres();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         //savedInstanceState
         if (mBundleRecyclerView != null) {

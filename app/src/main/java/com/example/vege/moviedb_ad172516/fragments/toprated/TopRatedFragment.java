@@ -41,10 +41,16 @@ public class TopRatedFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         createTabs();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         //savedInstanceState
         if (mBundleViewPager != null) {

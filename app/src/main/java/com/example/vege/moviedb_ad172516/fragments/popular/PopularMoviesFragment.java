@@ -32,12 +32,6 @@ public class PopularMoviesFragment extends Fragment {
     private static Bundle mBundleRecyclerView;
     private final String KEY_RECYCLER_STATE = "recycler_state";
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,8 +47,8 @@ public class PopularMoviesFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         //recyclerview
         mRecyclerView.setHasFixedSize(true);
@@ -66,6 +60,12 @@ public class PopularMoviesFragment extends Fragment {
 
         //obtenemos las peliculas
         getPopularMoviesGenres();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         //savedInstanceState
         if (mBundleRecyclerView != null) {
