@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vege.moviedb_ad172516.R;
+import com.example.vege.moviedb_ad172516.adapters.MoviesAdapter;
 import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -60,6 +61,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         TextView detailsRating = findViewById(R.id.popularMoviesRating);
         detailsRating.setText(String.valueOf(rating));
+
+        TextView detailsGenres = findViewById(R.id.tvGenres);
+        detailsGenres.setText(MoviesAdapter.getGenres(getMovie.getMovieGenres()));
 
         //actionbar
         getSupportActionBar().setTitle(title);

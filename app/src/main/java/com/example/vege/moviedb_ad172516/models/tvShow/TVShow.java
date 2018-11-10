@@ -37,6 +37,7 @@ public class TVShow implements Parcelable {
         tvshowBackdrop = in.readString();
         tvshowRelease = in.readString();
         tvshowRating = in.readFloat();
+        tvshowGenres = in.readArrayList(null);
     }
 
     public static final Creator<TVShow> CREATOR = new Creator<TVShow>() {
@@ -112,5 +113,6 @@ public class TVShow implements Parcelable {
         dest.writeString(tvshowBackdrop);
         dest.writeString(tvshowRelease);
         dest.writeFloat(tvshowRating);
+        dest.writeList(tvshowGenres);
     }
 }

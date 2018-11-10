@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vege.moviedb_ad172516.R;
+import com.example.vege.moviedb_ad172516.adapters.TVShowsAdapter;
 import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.example.vege.moviedb_ad172516.models.tvShow.TVShow;
 import com.squareup.picasso.Picasso;
@@ -23,6 +24,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
     private TextView mReleaseDate;
     private TextView mRating;
     private ImageView mBackground;
+    private TextView mGenres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
         mReleaseDate = findViewById(R.id.tvshowDetailReleaseDate);
         mRating = findViewById(R.id.popularTVShowsRating);
         mBackground = findViewById(R.id.tvshowDetailsBackground);
+        mGenres = findViewById(R.id.tvshowDetailsGenres);
 
         //toolbar support
         mToolbar = findViewById(R.id.tvshowDetailTooolbar);
@@ -56,6 +59,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
         mOverview.setText(new String(getTVShow.getTvshowSynopsis()));
         mReleaseDate.setText(new String(getTVShow.getTvshowRelease()));
         mRating.setText(new String(String.valueOf(getTVShow.getTvshowRating())));
+        mGenres.setText(TVShowsAdapter.getGenres(getTVShow.getTvshowGenres()));
 
         //background
         Picasso.get()

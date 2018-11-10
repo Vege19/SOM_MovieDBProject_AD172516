@@ -42,6 +42,7 @@ public class Movie implements Parcelable {
         movieBackdrop = in.readString();
         movieRelease = in.readString();
         movieRate = in.readFloat();
+        movieGenres = in.readArrayList(null);
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -126,5 +127,6 @@ public class Movie implements Parcelable {
         dest.writeString(movieBackdrop);
         dest.writeString(movieRelease);
         dest.writeFloat(movieRate);
+        dest.writeList(movieGenres);
     }
 }
