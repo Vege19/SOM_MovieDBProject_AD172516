@@ -26,6 +26,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     private List<Movie> popularMovieList;
     private static List<Genre> allGenres;
     private Context context;
+    private String imageURL = "http://image.tmdb.org/t/p/w500";
 
     public MoviesAdapter(List<Movie> movies, List<Genre> allGenres, Context context) {
         this.popularMovieList = movies;
@@ -48,10 +49,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         viewHolder.mTitle.setText(movie.getMovieTitle());
         viewHolder.mGenre.setText(getGenres(movie.getMovieGenres()));
 
-
         //picasso para obtener las imagenes
         Picasso.get()
-                .load(movie.getMovieBackdrop())
+                .load(imageURL + movie.getMovieBackdrop())
                 .error(R.drawable.ic_signal_wifi_off_white_24dp)
                 .into(viewHolder.mPoster);
 

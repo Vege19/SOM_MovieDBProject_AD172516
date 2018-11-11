@@ -25,6 +25,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
     private TextView mRating;
     private ImageView mBackground;
     private TextView mGenres;
+    private String imageURL = "http://image.tmdb.org/t/p/w1280";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,8 @@ public class TVShowDetailsActivity extends AppCompatActivity {
             }
         });
 
+        getWindow().setStatusBarColor(getResources().getColor(android.R.color.black));
+
         //restore from intent
         Intent intent = getIntent();
         TVShow getTVShow = intent.getParcelableExtra("tvshow_details");
@@ -63,7 +66,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
 
         //background
         Picasso.get()
-                .load(getTVShow.getTvshowBackdrop())
+                .load(imageURL + getTVShow.getTvshowBackdrop())
                 .into(mBackground);
 
         getSupportActionBar().setTitle(getTVShow.getTvshowTitle());

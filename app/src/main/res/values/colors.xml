@@ -19,6 +19,6 @@
     <color name="searchDark">#1d396a</color>
 
     <color name="background">#f6f6f6</color>
-    <color name="detailsBackground">#ac000000</color>
+    <color name="detailsBackground">#7f000000</color>
 
 </resources>

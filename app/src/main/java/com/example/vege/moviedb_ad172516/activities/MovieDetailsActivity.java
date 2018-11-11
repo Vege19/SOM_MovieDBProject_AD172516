@@ -14,6 +14,8 @@ import com.squareup.picasso.Picasso;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
+    private String imageURL = "http://image.tmdb.org/t/p/w1280";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
             }
         });
 
+        getWindow().setStatusBarColor(getResources().getColor(android.R.color.black));
+
         //recuperamos los datos
         Intent intent = getIntent();
         Movie getMovie = intent.getParcelableExtra("details");
@@ -48,7 +52,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         final ImageView posterBackground = findViewById(R.id.ivDetailsBackground);
 
         Picasso.get()
-                .load(backdrop)
+                .load(imageURL + backdrop)
                 .placeholder(R.drawable.ic_broken_image_white_24dp)
                 .error(R.drawable.ic_signal_wifi_off_white_24dp)
                 .into(posterBackground);
