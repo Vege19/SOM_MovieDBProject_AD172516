@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,21 +18,24 @@ import com.example.vege.moviedb_ad172516.activities.MovieDetailsActivity;
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.activities.TVShowDetailsActivity;
 import com.example.vege.moviedb_ad172516.models.genre.Genre;
+import com.example.vege.moviedb_ad172516.models.movie.Movie;
 import com.example.vege.moviedb_ad172516.models.tvShow.TVShow;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsViewHolder> {
+public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsViewHolder> implements Filterable {
 
     private List<TVShow> tvShowList;
     private static List<Genre> allGenres;
+    private List<TVShow> searchTVShows;
     private Context context;
     private String imageURL = "http://image.tmdb.org/t/p/w500";
 
     public TVShowsAdapter(List<TVShow> tvShowList, List<Genre> allGenres, Context context) {
         this.tvShowList = tvShowList;
+        this.searchTVShows = new ArrayList<>(tvShowList);
         this.allGenres = allGenres;
         this.context = context;
     }
@@ -104,4 +109,41 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsV
 
         return TextUtils.join("  ·  ", movieGenres);
     }
+
+    @Override
+    public Filter getFilter() {
+        return tvShowFilter;
+    }
+
+    private Filter tvShowFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<TVShow> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(searchTVShows);
+
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (TVShow tvShow : searchTVShows) {
+                    if (tvShow.getTvshowTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(tvShow);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            //se limpiara la lista actual y mostrara los items filtrados
+            tvShowList.clear();
+            tvShowList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

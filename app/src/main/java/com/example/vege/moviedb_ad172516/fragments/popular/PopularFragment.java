@@ -73,8 +73,8 @@ public class PopularFragment extends Fragment {
 
         //toolbar setup
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolBar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Películas populares");
         setHasOptionsMenu(true);
-
 
         //recyclerview
         popularRecyclerView.setHasFixedSize(true);
@@ -168,18 +168,34 @@ public class PopularFragment extends Fragment {
         //customize search area
         final android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setQueryHint("Search in Popular");
-
         //Close button
         ImageView closeOption = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
         closeOption.setImageResource(R.drawable.ic_close_white_24dp);
-
-
         //Text
         EditText et = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         et.setTextColor(Color.WHITE);
         et.setHintTextColor(getResources().getColor(R.color.transparentWhite));
 
+        //searchview setup
+        android.support.v7.widget.SearchView search = (android.support.v7.widget.SearchView) searchItem.getActionView();
 
+        search.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                //si muestra peliculas filtra peliculas, si muestra series filtra series
+                if (popularRecyclerView.getAdapter() == mMoviesAdapter) {
+                    mMoviesAdapter.getFilter().filter(s);
+                } else if (popularRecyclerView.getAdapter() == mTVShowsAdapter) {
+                    mTVShowsAdapter.getFilter().filter(s);
+                }
+                return false;
+            }
+        });
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -191,9 +207,11 @@ public class PopularFragment extends Fragment {
             case R.id.action_change:
                 if (popularRecyclerView.getAdapter() == mMoviesAdapter) {
                     getPopularTVShowsAndGenres();
+                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Series de TV populares");
                     item.setIcon(getResources().getDrawable(R.drawable.ic_local_movies_white_24dp));
                 } else if (popularRecyclerView.getAdapter() == mTVShowsAdapter){
                     getPopularMoviesAndGenres();
+                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Películas populares");
                     item.setIcon(getResources().getDrawable(R.drawable.ic_tv_white_24dp));
                 }
                 break;

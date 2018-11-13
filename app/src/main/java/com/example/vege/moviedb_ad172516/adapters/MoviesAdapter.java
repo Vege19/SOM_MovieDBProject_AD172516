@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,15 +23,17 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
+public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> implements Filterable {
 
     private List<Movie> popularMovieList;
     private static List<Genre> allGenres;
+    private List<Movie> searchList;
     private Context context;
     private String imageURL = "http://image.tmdb.org/t/p/w500";
 
     public MoviesAdapter(List<Movie> movies, List<Genre> allGenres, Context context) {
         this.popularMovieList = movies;
+        this.searchList = new ArrayList<>(popularMovieList);
         this.allGenres = allGenres;
         this.context = context;
     }
@@ -108,5 +112,42 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     }
 
 
+    @Override
+    public Filter getFilter() {
+        return movieFilter;
+    }
+
+    private Filter movieFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Movie> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(searchList);
+
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Movie movie : searchList) {
+                    if (movie.getMovieTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(movie);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            //se limpiara la lista actual y mostrara los items filtrados
+            popularMovieList.clear();
+            popularMovieList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 }

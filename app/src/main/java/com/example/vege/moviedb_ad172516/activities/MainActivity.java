@@ -3,15 +3,12 @@ package com.example.vege.moviedb_ad172516.activities;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.fragments.popular.PopularFragment;
-import com.example.vege.moviedb_ad172516.fragments.SearchFragment;
 import com.example.vege.moviedb_ad172516.fragments.toprated.TopRatedFragment;
 import com.example.vege.moviedb_ad172516.fragments.UpcomingFragment;
 
@@ -60,11 +57,6 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new UpcomingFragment();
                             mBottomNavigationView.setBackgroundColor(getResources().getColor(R.color.upcoming));
                             getWindow().setStatusBarColor(getResources().getColor(R.color.upcomingDark));
-                            break;
-                        case R.id.navigation_search:
-                            selectedFragment = new SearchFragment();
-                            mBottomNavigationView.setBackgroundColor(getResources().getColor(R.color.search));
-                            getWindow().setStatusBarColor(getResources().getColor(R.color.searchDark));
                             break;
                     }
 
