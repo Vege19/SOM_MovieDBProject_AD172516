@@ -12,10 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.vege.moviedb_ad172516.R;
-import com.example.vege.moviedb_ad172516.adapters.PopularViewPagerAdapter;
 import com.example.vege.moviedb_ad172516.adapters.TopRatedViewPagerAdapter;
-import com.example.vege.moviedb_ad172516.fragments.popular.PopularMoviesFragment;
-import com.example.vege.moviedb_ad172516.fragments.popular.PopularTVShowsFragment;
 
 public class TopRatedFragment extends Fragment {
 
