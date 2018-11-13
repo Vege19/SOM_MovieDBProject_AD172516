@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,7 @@ public class PopularFragment extends Fragment {
     private TVShowsAdapter mTVShowsAdapter;
     private PopularMoviesRepository popularMoviesRepository;
     private PopularTVShowsRepository popularTVShowsRepository;
+    private FloatingActionButton contentFab;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class PopularFragment extends Fragment {
 
         popularRecyclerView = getActivity().findViewById(R.id.rvPopular);
         mToolBar = getActivity().findViewById(R.id.popularToolBar);
+        contentFab = getActivity().findViewById(R.id.fabChangePopular);
     }
 
     @Nullable
@@ -66,7 +69,8 @@ public class PopularFragment extends Fragment {
 
         //toolbar setup
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolBar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Películas populares");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Popular · Películas");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setElevation(4);
         setHasOptionsMenu(true);
 
         //recyclerview
@@ -79,6 +83,23 @@ public class PopularFragment extends Fragment {
         popularTVShowsRepository = PopularTVShowsRepository.getInstance();
 
         getPopularMoviesAndGenres();
+
+        //fab action
+        contentFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (popularRecyclerView.getAdapter() == mMoviesAdapter) {
+                    getPopularTVShowsAndGenres();
+                    contentFab.setImageDrawable(getResources().getDrawable(R.drawable.ic_outline_movie_24px));
+                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Popular · Series de TV");
+                } else if (popularRecyclerView.getAdapter() == mTVShowsAdapter) {
+                    getPopularMoviesAndGenres();
+                    contentFab.setImageDrawable(getResources().getDrawable(R.drawable.ic_live_tv_white_24dp));
+                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Popular · Películas");
+                }
+            }
+        });
 
     }
 
@@ -196,20 +217,7 @@ public class PopularFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        //si la recycler esta mostrando peliculas, mostrara series y viceversa
-        switch (item.getItemId()) {
-            case R.id.action_change:
-                if (popularRecyclerView.getAdapter() == mMoviesAdapter) {
-                    getPopularTVShowsAndGenres();
-                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Series de TV populares");
-                    item.setIcon(getResources().getDrawable(R.drawable.ic_local_movies_white_24dp));
-                } else if (popularRecyclerView.getAdapter() == mTVShowsAdapter){
-                    getPopularMoviesAndGenres();
-                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Películas populares");
-                    item.setIcon(getResources().getDrawable(R.drawable.ic_tv_white_24dp));
-                }
-                break;
-        }
         return super.onOptionsItemSelected(item);
+
     }
 }

@@ -31,7 +31,7 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsV
     private static List<Genre> allGenres;
     private List<TVShow> searchTVShows;
     private Context context;
-    private String imageURL = "http://image.tmdb.org/t/p/w500";
+    private String imageURL = "http://image.tmdb.org/t/p/w1280";
 
     public TVShowsAdapter(List<TVShow> tvShowList, List<Genre> allGenres, Context context) {
         this.tvShowList = tvShowList;
@@ -57,7 +57,7 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsV
 
         //picasso para obtener las imagenes
         Picasso.get()
-                .load(imageURL + tvShow.getTvshowPoster())
+                .load(imageURL + tvShow.getTvshowBackdrop())
                 .error(R.drawable.ic_signal_wifi_off_white_24dp)
                 .into(viewHolder.mBackdrop);
 

@@ -3,6 +3,7 @@ package com.example.vege.moviedb_ad172516.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     private static List<Genre> allGenres;
     private List<Movie> searchList;
     private Context context;
-    private String imageURL = "http://image.tmdb.org/t/p/w500";
+    private String imageURL = "http://image.tmdb.org/t/p/w1280";
 
     public MoviesAdapter(List<Movie> movies, List<Genre> allGenres, Context context) {
         this.popularMovieList = movies;
@@ -55,7 +56,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
         //picasso para obtener las imagenes
         Picasso.get()
-                .load(imageURL + movie.getMoviePoster())
+                .load(imageURL + movie.getMovieBackdrop())
                 .error(R.drawable.ic_signal_wifi_off_white_24dp)
                 .into(viewHolder.mPoster);
 
@@ -82,7 +83,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         private TextView mTitle;
         private TextView mGenre;
         private ImageView mPoster;
-        RelativeLayout mItem;
+        private RelativeLayout mItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

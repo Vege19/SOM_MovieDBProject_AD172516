@@ -3,9 +3,7 @@
     android:id="@+id/rlTVshowItem"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginLeft="8dp"
+    android:layout_height="185dp"
     android:elevation="4dp">
 
         <ImageView
@@ -13,8 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="TODO"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"/>
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/tvTVShowTitle"
@@ -28,8 +25,7 @@
             android:text="@string/movie_title"
             android:textColor="@color/primaryText"
             android:textStyle="bold"
-            android:textSize="16sp"
-            android:visibility="invisible"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvTVShowGenres"
@@ -42,8 +38,7 @@
             android:elevation="1dp"
             android:text="@string/movie_title"
             android:textColor="@color/secondaryText"
-            android:textSize="14sp"
-            android:visibility="invisible"/>
+            android:textSize="14sp" />
 
         <View
             android:layout_width="match_parent"
@@ -52,8 +47,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
             android:layout_marginBottom="0dp"
-            android:background="@drawable/background_movie_title"
-            android:visibility="invisible">
+            android:background="@drawable/background_movie_title">
         </View>
 
 </RelativeLayout>

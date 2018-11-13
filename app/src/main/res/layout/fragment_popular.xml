@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
             android:elevation="4dp"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
             app:titleTextColor="@android:color/white">
 
         </android.support.v7.widget.Toolbar>
@@ -32,14 +31,25 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvPopular"
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingRight="8dp"
-            android:paddingBottom="8dp"
-            android:background="#424242"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabChangePopular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/popular"
+            android:src="@drawable/ic_live_tv_white_24dp"
+            app:backgroundTint="@color/popular" />
 
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
