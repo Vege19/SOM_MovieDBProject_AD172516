@@ -9,8 +9,8 @@
 
     <color name="transparentWhite">#97ffffff</color>
 
-    <color name="popular">#A43931</color>
-    <color name="popularDark">#722722</color>
+    <color name="popular">#c62828</color>
+    <color name="popularDark">#b71c1c</color>
     <color name="toprated">#302b63</color>
     <color name="topratedDark">#211e45</color>
     <color name="upcoming">#3b8d99</color>

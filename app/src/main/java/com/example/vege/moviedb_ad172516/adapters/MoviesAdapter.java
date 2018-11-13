@@ -55,7 +55,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
         //picasso para obtener las imagenes
         Picasso.get()
-                .load(imageURL + movie.getMovieBackdrop())
+                .load(imageURL + movie.getMoviePoster())
                 .error(R.drawable.ic_signal_wifi_off_white_24dp)
                 .into(viewHolder.mPoster);
 

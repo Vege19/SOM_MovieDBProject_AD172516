@@ -2,15 +2,11 @@ package com.example.vege.moviedb_ad172516.fragments.popular;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,13 +19,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.vege.moviedb_ad172516.R;
 import com.example.vege.moviedb_ad172516.adapters.MoviesAdapter;
-import com.example.vege.moviedb_ad172516.adapters.PopularViewPagerAdapter;
 import com.example.vege.moviedb_ad172516.adapters.TVShowsAdapter;
 import com.example.vege.moviedb_ad172516.models.genre.Genre;
 import com.example.vege.moviedb_ad172516.models.genre.OnGetGenresCallBack;
@@ -86,7 +79,6 @@ public class PopularFragment extends Fragment {
         popularTVShowsRepository = PopularTVShowsRepository.getInstance();
 
         getPopularMoviesAndGenres();
-
 
     }
 
@@ -154,7 +146,7 @@ public class PopularFragment extends Fragment {
 
             @Override
             public void onError() {
-
+                Toast.makeText(getContext(), "Network Error.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -196,7 +188,9 @@ public class PopularFragment extends Fragment {
                 return false;
             }
         });
+
         super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override

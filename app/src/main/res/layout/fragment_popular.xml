@@ -36,10 +36,10 @@
             android:id="@+id/rvPopular"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
+            android:background="#424242"/>
 
     </RelativeLayout>
-
 </android.support.design.widget.CoordinatorLayout>

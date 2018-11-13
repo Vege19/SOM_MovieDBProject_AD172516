@@ -57,7 +57,7 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsV
 
         //picasso para obtener las imagenes
         Picasso.get()
-                .load(imageURL + tvShow.getTvshowBackdrop())
+                .load(imageURL + tvShow.getTvshowPoster())
                 .error(R.drawable.ic_signal_wifi_off_white_24dp)
                 .into(viewHolder.mBackdrop);
 
