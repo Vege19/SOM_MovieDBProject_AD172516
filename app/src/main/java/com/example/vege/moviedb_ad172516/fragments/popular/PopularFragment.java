@@ -1,6 +1,5 @@
 package com.example.vege.moviedb_ad172516.fragments.popular;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,8 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.vege.moviedb_ad172516.R;
@@ -70,7 +67,7 @@ public class PopularFragment extends Fragment {
         //toolbar setup
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolBar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Popular · Películas");
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setElevation(4);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setElevation(8);
         setHasOptionsMenu(true);
 
         //recyclerview
@@ -175,19 +172,12 @@ public class PopularFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.toolbar_actions, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+        inflater.inflate(R.menu.toolbar_actions_popular, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search_popular);
 
         //customize search area
         final android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setQueryHint("Search in Popular");
-        //Close button
-        ImageView closeOption = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
-        closeOption.setImageResource(R.drawable.ic_close_white_24dp);
-        //Text
-        EditText et = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        et.setTextColor(Color.WHITE);
-        et.setHintTextColor(getResources().getColor(R.color.transparentWhite));
 
         //searchview setup
         android.support.v7.widget.SearchView search = (android.support.v7.widget.SearchView) searchItem.getActionView();

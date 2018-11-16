@@ -30,7 +30,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     private static List<Genre> allGenres;
     private List<Movie> searchList;
     private Context context;
-    private String imageURL = "http://image.tmdb.org/t/p/w1280";
+    private String imageURL = "http://image.tmdb.org/t/p/w500";
 
     public MoviesAdapter(List<Movie> movies, List<Genre> allGenres, Context context) {
         this.popularMovieList = movies;
@@ -51,12 +51,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         final Movie movie = popularMovieList.get(i);
 
-        viewHolder.mTitle.setText(movie.getMovieTitle());
-        viewHolder.mGenre.setText(getGenres(movie.getMovieGenres()));
-
         //picasso para obtener las imagenes
         Picasso.get()
-                .load(imageURL + movie.getMovieBackdrop())
+                .load(imageURL + movie.getMoviePoster())
                 .error(R.drawable.ic_signal_wifi_off_white_24dp)
                 .into(viewHolder.mPoster);
 
@@ -80,18 +77,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mTitle;
-        private TextView mGenre;
         private ImageView mPoster;
-        private RelativeLayout mItem;
+        private CardView mItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mTitle = itemView.findViewById(R.id.tvTitle);
             mPoster = itemView.findViewById(R.id.ivPoster);
             mItem = itemView.findViewById(R.id.rlItem);
-            mGenre = itemView.findViewById(R.id.tvGenres);
 
         }
 

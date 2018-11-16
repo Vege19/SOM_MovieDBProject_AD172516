@@ -3,6 +3,7 @@ package com.example.vege.moviedb_ad172516.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsV
     private static List<Genre> allGenres;
     private List<TVShow> searchTVShows;
     private Context context;
-    private String imageURL = "http://image.tmdb.org/t/p/w1280";
+    private String imageURL = "http://image.tmdb.org/t/p/w500";
 
     public TVShowsAdapter(List<TVShow> tvShowList, List<Genre> allGenres, Context context) {
         this.tvShowList = tvShowList;
@@ -52,12 +53,9 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsV
     public void onBindViewHolder(@NonNull TVShowsViewHolder viewHolder, int i) {
         final TVShow tvShow = tvShowList.get(i);
 
-        viewHolder.mTitle.setText(tvShow.getTvshowTitle());
-        viewHolder.mGenres.setText(getGenres(tvShow.getTvshowGenres()));
-
         //picasso para obtener las imagenes
         Picasso.get()
-                .load(imageURL + tvShow.getTvshowBackdrop())
+                .load(imageURL + tvShow.getTvshowPoster())
                 .error(R.drawable.ic_signal_wifi_off_white_24dp)
                 .into(viewHolder.mBackdrop);
 
@@ -80,18 +78,15 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowsV
 
     public class TVShowsViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mTitle;
-        private TextView mGenres;
         private ImageView mBackdrop;
-        private RelativeLayout mItem;
+        private CardView mItem;
 
         public TVShowsViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mTitle = itemView.findViewById(R.id.tvTVShowTitle);
             mBackdrop = itemView.findViewById(R.id.ivTVShowPoster);
             mItem = itemView.findViewById(R.id.rlTVshowItem);
-            mGenres = itemView.findViewById(R.id.tvTVShowGenres);
+
         }
     }
 
