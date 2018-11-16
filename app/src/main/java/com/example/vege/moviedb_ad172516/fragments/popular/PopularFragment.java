@@ -1,38 +1,55 @@
 package com.example.vege.moviedb_ad172516.fragments.popular;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.TabLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toolbar;
+import android.widget.Toast;
 
 import com.example.vege.moviedb_ad172516.R;
-import com.example.vege.moviedb_ad172516.adapters.PopularViewPagerAdapter;
+import com.example.vege.moviedb_ad172516.adapters.MoviesAdapter;
+import com.example.vege.moviedb_ad172516.adapters.TVShowsAdapter;
+import com.example.vege.moviedb_ad172516.models.genre.Genre;
+import com.example.vege.moviedb_ad172516.models.genre.OnGetGenresCallBack;
+import com.example.vege.moviedb_ad172516.models.movie.Movie;
+import com.example.vege.moviedb_ad172516.models.movie.OnGetMovieCallBack;
+import com.example.vege.moviedb_ad172516.models.movie.PopularMoviesRepository;
+import com.example.vege.moviedb_ad172516.models.tvShow.OnGetTVShowCallBack;
+import com.example.vege.moviedb_ad172516.models.tvShow.PopularTVShowsRepository;
+import com.example.vege.moviedb_ad172516.models.tvShow.TVShow;
+
+import java.util.List;
 
 public class PopularFragment extends Fragment {
 
-    public static TabLayout mTabLayout;
-    private ViewPager mViewPager;
-    private PopularViewPagerAdapter mViewPagerAdapter;
-    private String KEY_VIEWPAGER_STATE = "viewpager_state";
-    private String KEY_TAB_POSITION = "tab_position";
-    private Bundle mBundleViewPager, mBundleTabPosition;
+    private RecyclerView popularRecyclerView;
+    private MoviesAdapter mMoviesAdapter;
+    private android.support.v7.widget.Toolbar mToolBar;
+    private TVShowsAdapter mTVShowsAdapter;
+    private PopularMoviesRepository popularMoviesRepository;
+    private PopularTVShowsRepository popularTVShowsRepository;
+    private FloatingActionButton contentFab;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mTabLayout = getActivity().findViewById(R.id.popularTabLayout);
-        mViewPager = getActivity().findViewById(R.id.popularViewPager);
+        popularRecyclerView = getActivity().findViewById(R.id.rvPopular);
+        mToolBar = getActivity().findViewById(R.id.popularToolBar);
+        contentFab = getActivity().findViewById(R.id.fabChangePopular);
     }
 
     @Nullable
@@ -47,53 +64,150 @@ public class PopularFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        createTabs();
+        //toolbar setup
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolBar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Popular · Películas");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setElevation(8);
+        setHasOptionsMenu(true);
+
+        //recyclerview
+        popularRecyclerView.setHasFixedSize(true);
+        popularRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        popularRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), getActivity().getResources().getInteger(R.integer.spanCount)));
+
+        //get retrofit instance
+        popularMoviesRepository = PopularMoviesRepository.getInstance();
+        popularTVShowsRepository = PopularTVShowsRepository.getInstance();
+
+        getPopularMoviesAndGenres();
+
+        //fab action
+        contentFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (popularRecyclerView.getAdapter() == mMoviesAdapter) {
+                    getPopularTVShowsAndGenres();
+                    contentFab.setImageDrawable(getResources().getDrawable(R.drawable.ic_outline_movie_24px));
+                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Popular · Series de TV");
+                } else if (popularRecyclerView.getAdapter() == mTVShowsAdapter) {
+                    getPopularMoviesAndGenres();
+                    contentFab.setImageDrawable(getResources().getDrawable(R.drawable.ic_live_tv_white_24dp));
+                    ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Popular · Películas");
+                }
+            }
+        });
+
+    }
+
+    /**MOVIES**/
+    private void getPopularMoviesAndGenres() {
+
+        popularMoviesRepository.getPopularMoviesGenres(new OnGetGenresCallBack() {
+            @Override
+            public void OnSuccess(List<Genre> genres) {
+                getPopularMoviesRepository(genres);
+            }
+
+            @Override
+            public void onError() {
+                Toast.makeText(getContext(), "Network Error.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    void getPopularMoviesRepository(final List<Genre> genres) {
+
+        //sobreescribimos los metodos para llenar la recyclerview
+        popularMoviesRepository.getMovies(new OnGetMovieCallBack() {
+            @Override
+            public void onSuccess(List<Movie> movies) {
+                mMoviesAdapter = new MoviesAdapter(movies, genres, getContext());
+                popularRecyclerView.setAdapter(mMoviesAdapter);
+
+            }
+
+            @Override
+            public void onError() {
+                Toast.makeText(getContext(), "Network Error.", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
+    /**TV SHOWS**/
+    private void getPopularTVShowsAndGenres() {
+
+        popularTVShowsRepository.getPopularTVShowsGenres(new OnGetGenresCallBack() {
+            @Override
+            public void OnSuccess(List<Genre> genres) {
+                getPopularTVShowsRepository(genres);
+            }
+
+            @Override
+            public void onError() {
+                Toast.makeText(getContext(), "Network Error.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    void getPopularTVShowsRepository(final List<Genre> genres) {
+
+        //sobreescribimos los metodos para llenar la recyclerview
+        popularTVShowsRepository.getPopularTVShows(new OnGetTVShowCallBack() {
+            @Override
+            public void onSuccess(List<TVShow> tvShows) {
+                mTVShowsAdapter = new TVShowsAdapter(tvShows, genres, getContext());
+                popularRecyclerView.setAdapter(mTVShowsAdapter);
+            }
+
+            @Override
+            public void onError() {
+                Toast.makeText(getContext(), "Network Error.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_actions_popular, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search_popular);
 
-        //savedInstanceState
-        if (mBundleViewPager != null) {
-            Parcelable viewpagerState = mBundleViewPager.getParcelable(KEY_VIEWPAGER_STATE);
-            mViewPager.onRestoreInstanceState(viewpagerState);
+        //customize search area
+        final android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setQueryHint("Search in Popular");
 
-        }
+        //searchview setup
+        android.support.v7.widget.SearchView search = (android.support.v7.widget.SearchView) searchItem.getActionView();
 
-        if (mBundleTabPosition != null) {
-            int tabPosition = mBundleTabPosition.getInt(KEY_TAB_POSITION);
-            mTabLayout.getTabAt(tabPosition).select();
-        }
+        search.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                //si muestra peliculas filtra peliculas, si muestra series filtra series
+                if (popularRecyclerView.getAdapter() == mMoviesAdapter) {
+                    mMoviesAdapter.getFilter().filter(s);
+                } else if (popularRecyclerView.getAdapter() == mTVShowsAdapter) {
+                    mTVShowsAdapter.getFilter().filter(s);
+                }
+                return false;
+            }
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
 
     }
-
-    private void createTabs() {
-
-        //vpager
-        mViewPagerAdapter = new PopularViewPagerAdapter(getChildFragmentManager());//childfragmentmanager
-        mViewPagerAdapter.addPopularFragment(new PopularMoviesFragment(), "Películas");
-        mViewPagerAdapter.addPopularFragment(new PopularTVShowsFragment(), "Series de TV");
-        mViewPager.setAdapter(mViewPagerAdapter);
-
-        //tablayout
-        mTabLayout.setupWithViewPager(mViewPager);
-
-    }
-
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        //save viewpager instance state
-        mBundleViewPager = new Bundle();
-        Parcelable viewpagerState = mViewPager.onSaveInstanceState();
-        mBundleViewPager.putParcelable(KEY_VIEWPAGER_STATE, viewpagerState);
-
-        mBundleTabPosition = new Bundle();
-        int tabPosition = mTabLayout.getSelectedTabPosition();
-        mBundleTabPosition.putInt(KEY_TAB_POSITION, tabPosition);
+        return super.onOptionsItemSelected(item);
 
     }
 }

@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#424242</color>
-    <color name="colorPrimaryDark">#212121</color>
-    <color name="colorAccent">#ffffff</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#b2b2b2</color>
+    <color name="colorAccent">#000000</color>
 
-    <color name="primaryText">#ffffff</color>
-    <color name="secondaryText">#e2e2e2</color>
+    <color name="primaryText">#000000</color>
+    <color name="secondaryText">#1d1d1d</color>
 
-    <color name="transparentWhite">#97ffffff</color>
+    <color name="transparentWhite">#50ffffff</color>
+    <color name="transparentBlack">#64000000</color>
 
-    <color name="popular">#A43931</color>
-    <color name="popularDark">#722722</color>
+    <color name="popular">#c62828</color>
+    <color name="popularDark">#b71c1c</color>
+    <color name="popularHint">#7fb71c1c</color>
     <color name="toprated">#302b63</color>
     <color name="topratedDark">#211e45</color>
+    <color name="topratedHint">#7f211e45</color>
     <color name="upcoming">#3b8d99</color>
     <color name="upcomingDark">#29626b</color>
+    <color name="upcomingHint">#7f29626b</color>
     <color name="search">#2a5298</color>
     <color name="searchDark">#1d396a</color>
 
     <color name="background">#f6f6f6</color>
     <color name="detailsBackground">#7f000000</color>
+
+    <color name="recycleviewBackground">#424242</color>
 
 </resources>
